@@ -6,3 +6,6 @@ content-type: application/json
   "email": "fghj@ru.ru",
   "password": "erytre"
 }
+
+### Find a particular user with a given ID
+GET http://localhost:3000/auth/3
