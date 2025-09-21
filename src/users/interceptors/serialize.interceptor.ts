@@ -2,8 +2,11 @@ import { CallHandler, ExecutionContext, NestInterceptor } from '@nestjs/common';
 import { map, Observable } from 'rxjs';
 import { plainToInstance } from 'class-transformer';
 import { UserDto } from '../dtos/user.dto';
+import { UsersService } from '../users.service';
 
 export class SerializeInterceptor implements NestInterceptor {
+
+  constructor(private dto: any) {}
 
   intercept(context: ExecutionContext, handler: CallHandler<any>): Observable<any> | Promise<Observable<any>> {
     // Run something before a request is handled
@@ -15,7 +18,7 @@ export class SerializeInterceptor implements NestInterceptor {
         // Run something before the response is sent out
         // console.log('I am run before response is sent out', data);
 
-        return plainToInstance(UserDto, data, {
+        return plainToInstance(this.dto, data, {
           excludeExtraneousValues: true,
         });
       })
