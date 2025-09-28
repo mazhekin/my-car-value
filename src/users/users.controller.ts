@@ -12,7 +12,7 @@ import {
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dtos/update-user.dto';
-import { Serialize } from './interceptors/serialize.interceptor';
+import { Serialize } from '../interceptors/serialize.interceptor';
 import { UserDto } from './dtos/user.dto';
 import { AuthService } from './auth.service';
 import { User } from './user.entity';
@@ -33,7 +33,7 @@ export class UsersController {
   }*/
 
   @Get('/whoami')
-  whoAmI(@CurrentUser() user: string) {
+  whoAmI(@CurrentUser() user: User) {
     return user;
   }
 
